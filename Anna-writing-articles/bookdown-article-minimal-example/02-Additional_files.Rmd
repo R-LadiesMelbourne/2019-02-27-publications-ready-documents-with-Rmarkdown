@@ -1,0 +1,11 @@
+# Supplementary Material {-}
+
+\beginsupplement
+
+
+```{r sup1,eval=TRUE,fig.cap="Caption for the first Sup figure in my paper"}
+plot(1:10)
+```
+
+
+

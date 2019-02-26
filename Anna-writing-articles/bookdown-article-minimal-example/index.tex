@@ -1,0 +1,201 @@
+\documentclass[12pt,]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={title},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{longtable,booktabs}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{title}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+    \author{Author 1\footnote{Corresponding author:
+  \href{mailto:email@email.com}{\nolinkurl{email@email.com}}} \(^1\),
+Author 2 \(^1\), Author 3 \(^2\)\\
+\(^1\)Affiliation1, \(^2\)Affiliation2}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+    \date{}
+    \predate{}\postdate{}
+  
+\usepackage{float} \floatplacement{figure}{H}
+\newcommand{\beginsupplement}{\setcounter{table}{0}  \renewcommand{\thetable}{S\arabic{table}} \setcounter{figure}{0} \renewcommand{\thefigure}{S\arabic{figure}}}
+\usepackage{setspace}\doublespacing \usepackage{lineno} \linenumbers
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Your abstract goes here\ldots{}
+\end{abstract}
+
+\newpage
+
+\section{Introduction}\label{introduction}
+
+\label{sec:intro}
+
+This is my intro. All of this uses the amazing (Xie 2016) package.
+
+Bookdown extends the syntax provided by R Markdown, allowing automatic
+numbering of figures / tables / equations, and cross-referencing them.
+
+\url{https://stackoverflow.com/questions/25824795/how-to-combine-two-rmarkdown-rmd-files-into-a-single-output}
+
+\url{http://landscapeportal.org/blog/2017/09/06/r-markdown-template-for-a-scientific-manuscript/}
+
+\section{Results}\label{results}
+
+\label{sec:res}
+
+Amazing results after introducing the story in Section \ref{sec:intro}.
+
+\subsection{About the Normal
+Distribution}\label{about-the-normal-distribution}
+
+\label{sec:res-trees}
+
+\begin{itemize}
+\tightlist
+\item
+  Problem of ``floating environments'' in LaTeX
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics{imgbell-curve-1.pdf}
+\caption{\label{fig:bell-curve}Red trees in autumn}
+\end{figure}
+
+It's a pretty cool bell curve in Figure \ref{fig:bell-curve}
+\ref{fig:bell-curve}. Whatch out for \texttt{\_} in cross-referencing
+labels!
+
+If you want to cross-reference figures or tables generated from a code
+chunk, please make sure the chunk label only contains alphanumeric
+characters (a-z, A-Z, 0-9), slashes (/), or dashes (-).
+
+It is always good to have some Greek letters in your paper! Like
+Equation \eqref{eq:binom} below:
+
+\begin{equation} 
+  f\left(k\right) = \binom{n}{k} p^k\left(1-p\right)^{n-k}
+  \label{eq:binom}
+\end{equation}
+
+\subsection{About the scatter plot}\label{about-the-scatter-plot}
+
+\begin{figure}
+\centering
+\includegraphics{imgscatter-1.pdf}
+\caption{\label{fig:scatter}Loud Kookabara}
+\end{figure}
+
+\begin{table}[t]
+
+\caption{\label{tab:tree-diamonds}A table of the first 10 rows and three columns of the diamonds data.}
+\centering
+\begin{tabular}{rlllrrrrrr}
+\toprule
+carat & cut & color & clarity & depth & table & price & x & y & z\\
+\midrule
+0.23 & Ideal & E & SI2 & 61.5 & 55 & 326 & 3.95 & 3.98 & 2.43\\
+0.21 & Premium & E & SI1 & 59.8 & 61 & 326 & 3.89 & 3.84 & 2.31\\
+0.23 & Good & E & VS1 & 56.9 & 65 & 327 & 4.05 & 4.07 & 2.31\\
+0.29 & Premium & I & VS2 & 62.4 & 58 & 334 & 4.20 & 4.23 & 2.63\\
+0.31 & Good & J & SI2 & 63.3 & 58 & 335 & 4.34 & 4.35 & 2.75\\
+\addlinespace
+0.24 & Very Good & J & VVS2 & 62.8 & 57 & 336 & 3.94 & 3.96 & 2.48\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+We created the simple Table \ref{tab:tree-diamonds}. See more on tables
+and long tables \url{https://bookdown.org/yihui/bookdown/tables.html}.
+
+You can also see a scatter plot in Figure \ref{fig:sup1}.
+
+\subsection{Extra tips: Setup your
+bibliography}\label{extra-tips-setup-your-bibliography}
+
+\section{Conclusions}\label{conclusions}
+
+Bla Bla\ldots{}.
+
+\newpage
+
+\hypertarget{refs}{}
+\hypertarget{ref-bookdown}{}
+Xie, Yihui. 2016. \emph{Bookdown: Authoring Books and Technical
+Documents with R Markdown}. Boca Raton, Florida: Chapman; Hall/CRC.
+\url{https://github.com/rstudio/bookdown}.
+
+
+\end{document}

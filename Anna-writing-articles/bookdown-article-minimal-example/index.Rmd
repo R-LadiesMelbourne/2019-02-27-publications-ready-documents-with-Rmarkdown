@@ -1,0 +1,112 @@
+---
+title: "title"
+site: bookdown::bookdown_site
+
+author: |
+  | Author 1^[Corresponding author: email@email.com] $^1$, Author 2 $^1$, Author 3 $^2$
+  | $^1$Affiliation1,  $^2$Affiliation2
+
+abstract: |
+  Your abstract goes here...
+
+bibliography: biblio.bib
+
+output: 
+  bookdown::pdf_document2:
+    toc: no
+    keep_tex: true
+fontsize: 12pt
+header-includes: 
+  \usepackage{float} \floatplacement{figure}{H} 
+  \newcommand{\beginsupplement}{\setcounter{table}{0}  \renewcommand{\thetable}{S\arabic{table}} \setcounter{figure}{0} \renewcommand{\thefigure}{S\arabic{figure}}}
+  \usepackage{setspace}\doublespacing
+  \usepackage{lineno}
+  \linenumbers
+---
+
+
+\newpage
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,fig.height = 5,fig.width = 5,fig.path = "img/")
+
+library(bookdown)
+library(knitr)
+library(tidyverse)
+```
+
+
+# Introduction
+\label{sec:intro}
+
+This is my intro. All of this uses the amazing [@bookdown] package.
+
+Bookdown extends the syntax provided by R Markdown, allowing automatic numbering of figures / tables / equations, and cross-referencing them.
+
+https://stackoverflow.com/questions/25824795/how-to-combine-two-rmarkdown-rmd-files-into-a-single-output
+
+http://landscapeportal.org/blog/2017/09/06/r-markdown-template-for-a-scientific-manuscript/
+
+
+# Results
+\label{sec:res}
+
+Amazing results after introducing the story in Section \ref{sec:intro}.
+
+All the Figures created by the chunks in this article will be saved into the `img/` which is created in the setup chunk at the beginning of this document. 
+
+## About the Normal Distribution
+\label{sec:res-trees}
+
+* Problem of “floating environments” in LaTeX
+
+```{r bell-curve, fig.cap="Red trees in autumn",eval=TRUE}
+plot(density(rnorm(100)))
+```
+
+It's a pretty cool bell curve in Figure \ref{fig:bell-curve}. Whatch out for `_` in cross-referencing labels!
+
+
+If you want to cross-reference figures or tables generated from a code chunk, please make sure the chunk label only contains alphanumeric characters (a-z, A-Z, 0-9), slashes (/), or dashes (-).
+
+It is always good to have some Greek letters in your paper! Like Equation \@ref(eq:binom) below:
+
+\begin{equation} 
+  f\left(k\right) = \binom{n}{k} p^k\left(1-p\right)^{n-k}
+  (\#eq:binom)
+\end{equation} 
+
+
+## About the scatter plot
+
+```{r scatter, fig.cap="Loud Kookabara",eval=TRUE}
+plot(1:10,1:10)
+```
+
+
+```{r tree-diamonds,eval=TRUE}
+kable(head(diamonds),
+      caption = 'A table of the first 10 rows and three columns of the diamonds data.',
+      booktabs = TRUE)
+```
+
+We created the simple Table \ref{tab:tree-diamonds}. See more on tables and long tables https://bookdown.org/yihui/bookdown/tables.html. 
+
+You can also see a scatter plot in Figure \@ref(fig:sup1).
+
+
+## Extra tips: Setup your bibliography
+
+```{r extra,eval=FALSE}
+print(citation("rticles"),bibtex=TRUE)
+```
+
+
+# Conclusions
+
+Bla Bla....
+
+
+\newpage
+
+

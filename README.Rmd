@@ -1,0 +1,18 @@
+---
+title: "README"
+author: "Anna Quaglieri & Soroor Zadeh"
+date: "27/02/2019"
+output: github_document
+---
+
+```{r setup, include=FALSE, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Instructions for books
+
+View Soroor's materials (**add link**)
+
+# Instructions for articles
+
+View Anna's materials  (**add link**)
