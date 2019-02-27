@@ -1,0 +1,21 @@
+\appendix  
+
+<!-- \appendix Resets figure/table caption numbers e.g first table will be called Table1 -->
+<!-- You appendix can start as follow: -->
+
+
+# Appendix {-}   
+## Tables of simulated library sizes {-}
+
+
+```{r echo = FALSE, fig.pos="H", message=FALSE, warning=FALSE}
+library(dplyr)
+library(kableExtra)
+
+lib.sizes <- matrix(rnorm(35), ncol=7)
+
+knitr::kable(lib.sizes, "latex", booktabs = TRUE, 
+						 caption = "figure caption") %>%
+	add_header_above(c(" ", "Group 1" = 3, "Group 2" = 3)) %>%
+	kable_styling(latex_options = c("hold_position","repeat_header"))
+```

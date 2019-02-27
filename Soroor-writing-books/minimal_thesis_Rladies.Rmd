@@ -1,0 +1,137 @@
+---
+title: "A Minimal thesis"
+author: 
+- Submitted in accordance with the requirements for the degree of Master of XXXX
+- School of XXXX
+- The University of XXXX
+date: "27/02/2019"
+output:
+  pdf_document:
+    latex_engine: pdflatex
+    number_sections: yes
+    fig_caption: yes
+    keep_tex: yes
+  word_document: default
+classoption: portrait
+documentclass: book
+fig_crop: no
+fontsize:
+  '12': null
+geometry: margin=1.1811in
+header-includes:
+- \usepackage{booktabs}
+- \usepackage{caption}
+- \usepackage{float}
+- \floatplacement{figure}{H}
+- \usepackage{sectsty}
+- \renewcommand{\contentsname}{}\vspace{-2cm}
+- \usepackage{pdfpages}
+- \usepackage{amsmath,amsfonts,amsthm,bm}
+- \usepackage{mathptmx}
+- \usepackage{enumerate}
+- \usepackage{lineno}
+- \usepackage{rotating}
+- \usepackage{pdflscape}
+- \usepackage{tabularx}
+- \usepackage[textsize=small]{todonotes}
+- \usepackage{xcolor}
+- \usepackage[none]{hyphenat}
+- \pagestyle{plain}
+- \raggedbottom
+linestretch: 1.5
+link-citations: yes
+csl: elsevier-with-titles-alphabetical.csl
+sansfont: Arial
+secnumdepth: 1
+subtitle: younamehere
+bibliography: example.bib
+toc: yes
+toc-depth: 3
+---
+
+# A (numbered) chapter
+
+
+## Sub-section (numbered)
+
+
+### sub-sub-section (not numbered) {-}
+
+
+This section will be listed in table of content, but no section number is assigned to it.
+This is a bold Latex _symbol_  $\boldsymbol\phi$. See also $\mathbf{Z}$ for _letters_.
+This is a fraction $\frac{a}{b}$
+This is a symbol superscript a letter/word $\alpha^{\rm CPM}$
+
+
+This is how to reference an article (bib item) in R Markdown about linear models [@smyth2004linear]. Almost always the BibTex style/encoding of a citation can be obtained from Google Scholar. See also _citer_ package.
+
+
+display equations:
+\[\rm dispersion = \boldsymbol\phi = \rm median(APL_{s_t}(\phi_t))d'/\chi^2_{d'},\]
+
+
+White space is equation, label equations, insert text in equations:
+\begin{equation}\label{lab1}\hat\sigma_{ti}^2 = \frac{\sum_k (y_{tk} - \bar y_{ti})^2/K-1 }{\bar y_{ti}}, \quad \text{where} \quad \bar y_{ti} = \frac{1}{K}\sum_k y_{tik}\end{equation}
+
+
+then you can reference the equation using \ref{lab1}
+
+
+#	This is a labelled chapter {#chapLabel}
+
+### Conditional equations {-}
+
+\begin{center}
+\begin{math}
+\psi_{i,j} = \sum_{f \in F_g} \psi_{f_{i,j}} =
+  \left\{
+    \begin{array}{l}
+      p_f^i(1-p_f^i) \quad\text{if}\quad i = j \\
+      -p_f^ip_f^j  \quad\quad\quad\text{if}\quad i \neq j
+    \end{array}
+  \right.
+\end{math}
+\end{center}
+
+
+
+### line-up equations {-}
+
+
+\begin{equation} \label{eq1}
+\begin{split}
+E[d_t] & = EE[d_t|y_t] \\
+ & = E[x\hat{\beta_t}|y_t] \\
+ & = xE[\hat{\beta_t}|y_t] \\
+ & = xE[(x^Tx)^{-1}x^Td_t|y_t] \\
+ & = x(x^Tx)^{-1}x^TE[d_t|y_t] \\
+ & = x(x^Tx)^{-1}x^TE[y_t + \xi_t] \\
+ & = x(x^Tx)^{-1}x^T[x\hat{\beta_t} + 0] \\
+ & = x\hat{\beta_t}
+\end{split}
+\end{equation}
+
+
+
+<!-- Insert image + fig caption + reference figures -->
+```{r, echo=FALSE, eval = FALSE, fig.cap="Insert figure caption here. \\label{referenceFig}"}
+knitr::include_graphics("deflationEffect_voom.png")
+```
+
+# Line spacing example
+## Reset line spacing:
+So far the line-space was 1.5 as per the YAML specification. If you'd like to reset use:
+
+\setstretch{1}
+then the space between lines is going to be back to 1 line. This is the second line with the reset line-spacing. A very very long line should go here to show that the line spacing is set back to default.
+
+# References {-}
+
+<div id="refs"></div>
+
+
+\newpage
+
+```{r, child = "appendix_Rladies.Rmd"}
+```
