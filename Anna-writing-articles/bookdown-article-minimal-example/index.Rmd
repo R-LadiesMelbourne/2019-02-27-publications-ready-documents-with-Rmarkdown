@@ -58,19 +58,6 @@ All the Figures created by the chunks in this article will be saved into the `im
 knitr::opts_chunk$set(echo = TRUE,fig.height = 5,fig.width = 5,fig.path = "img/",tidy = TRUE)
 ```
 
-## Some `LaTex` options!
-
-* Try removing the following from the `YAML`!
-
-```yaml
----
-\usepackage{setspace}\doublespacing
-\usepackage{lineno}
-\linenumbers
----
-```
-
-* Try adding the LaTex command `\usepackage{endfloat}` after `header-includes:` in the `YAML`
 
 ## Generate figures within a chunk 
 
@@ -120,11 +107,6 @@ print(utils::citation("rticles"),bibtex=TRUE)
 ## Reference/Re-number files in supplementary material
 
 Have a look at the beautiful autumn trees in Figure \@ref(fig:red-trees).
-
-## Collaboration with co-authors
-
-* Setup a `GitHub` account and push/pull changes with your collaborators
-* Checkout [Overleaf](https://www.overleaf.com/) for real-time collaboration on LaTex file. Have a read at this [blog post](https://medium.com/@arinbasu/a-tutorial-on-how-to-interface-an-r-notebook-with-overleaf-11f23c306cfd) that discuss working with Git, RStudio and Overleaf at the same time. The drawback is that, while it is easy to go from `Rmd` to `.tex` with the `YAML` option `keep_tex: true`, it is not the same on the other way around. However, it is worth checking it out since it offers plenty of journal LaTex templates! 
 
 # Conclusions
 

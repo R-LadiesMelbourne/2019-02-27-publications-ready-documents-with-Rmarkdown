@@ -13,4 +13,4 @@ View [Soroor's materials](https://github.com/R-LadiesMelbourne/2019-02-27-public
 Instructions for articles
 =========================
 
-View [Anna's materials](https://github.com/R-LadiesMelbourne/2019-02-27-publications-ready-documents-with-Rmarkdown/tree/master/Anna-writing-articles)
+View [Anna's introduction](http://rpubs.com/annaquagli/471405) and [minimal example](https://github.com/R-LadiesMelbourne/2019-02-27-publications-ready-documents-with-Rmarkdown/tree/master/Anna-writing-articles).

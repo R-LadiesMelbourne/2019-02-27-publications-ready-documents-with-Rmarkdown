@@ -1,13 +1,15 @@
 ---
 title: "Writing articles and reproducible documents `R`"
 author: "Anna Quaglieri"
-date: "21/02/2019"
+date: "27/02/2019"
 output: 
   bookdown::html_document2:
     toc: yes
     theme: journal
-  bookdown::pdf_document2:
-    toc: yes
+    includes:
+      after_body:
+      - header.html
+      - footer.html
 ---
 
 ```{r setup, include=FALSE}
@@ -42,7 +44,7 @@ library(rticles)
 
 If you work in Bioinformatics and you developed a [Bioconductor](https://www.bioconductor.org/) workflow then you might want to submit your paper to [F1000](https://f1000research.com/) and the [BiocWorkflowTools](https://www.bioconductor.org/packages/devel/bioc/vignettes/BiocWorkflowTools/inst/doc/Generate_F1000_Latex.html) is exactly what you need! 
 
-```{r install-bioc,message=FALSE}
+```{r install-bioc,message=FALSE,error=FALSE,eval=FALSE,echo=TRUE}
 if (!requireNamespace("BiocManager", quietly=TRUE))
     install.packages("BiocManager")
 BiocManager::install('BiocWorkflowTools')
@@ -66,6 +68,7 @@ Let's try an example!
 \newpage
 
 # My case: the journals I wanted to submit did not have an `Rmd` LaTex template. No drama! {-}
+\label{sec:my-case}
 
 ## My mind-workflow to setup myself to write a paper in `Rmd` {-}
 
@@ -81,7 +84,7 @@ The first thing that I did was to decide what I wanted.
 
 * I wanted to be able to create a file of additional information where tables and figures would be numbered distinctly from the main manuscript (e.g. S1, S2 etc...)
 
-## The `R` package `bookdown` is the answer!
+## `bookdown` is the answer! {-}
 
 * Generate [single flexible documents within the `bookdown` approach](https://bookdown.org/yihui/rmarkdown/bookdown-output.html#a-single-document)
 * Easy and consistent [Cross-referencing](https://bookdown.org/yihui/rmarkdown/bookdown-markdown.html#cross-referencing)
@@ -92,16 +95,15 @@ The first thing that I did was to decide what I wanted.
 
 Reports, articles and books can be easily generated using the `library(bookdown)`. This package was written to allow a flexible and comprehensve environment to author books in `R` and the author, Yihui Xie, made the same framework available to [write single documents](https://bookdown.org/yihui/rmarkdown/bookdown-output.html#a-single-document). Writing everyday reproducible documents or journal articles requires a very similar infrastructure and, at the end of the day, there is very little substantial difference between them. Yihui wrote a super comprehensive book  https://bookdown.org/yihui/bookdown/ about all things `bookdown`! Once you master one type of document, you are pretty well set to master them all! 
 
-In the `bookdown-article-minimal-example/` folder I created a minimal example that accomplishes all the tasks above.  
-
-
 # Minimal article with `bookdown::pdf_document2:` {-}
+
+In the `bookdown-article-minimal-example/` folder I created a minimal example to create an article with `bookdown`.  
 
 ## `YAML` setup {-}
 
 The `YAML` is what you need to define the layout or theme of your documents. You can also add plain LaTex code in here and tell `bookdown` how you want your `Rmd` files to be knitted together. By default, `bookdown` bind together files in numerical order. For example, see the `Rmd` files in the [`bookdown-article-minimal-example/` folder](https://github.com/R-LadiesMelbourne/2019-02-27-publications-ready-documents-with-Rmarkdown/tree/master/Anna-writing-articles/bookdown-article-minimal-example). The firt part would be `index.Rmd`, followed by `02-Additional_files` and `03-References.Rmd`.
 
-### Allow all the `bookdown` cross-referencing approach {-}
+### Allow the `bookdown` cross-referencing approach {-}
 
 ```yaml
 ---
@@ -137,7 +139,7 @@ bibliography: biblio.bib
 ---
 ```
 
-### Allow to split the article in separate files and combine them when knitting {-} `bookdown::bookdown_site`
+### Allow to split the article in separate files and combine them when knitting: `bookdown::bookdown_site` {-}
 
 ```yaml
 ---
@@ -196,13 +198,37 @@ header-includes:
 ---
 ```
 
+### Some extra `LaTex` options: line numbering and spacing!
+
+* Try removing the following from the `YAML`!
+
+```yaml
+---
+\usepackage{setspace}\doublespacing
+\usepackage{lineno}
+\linenumbers
+---
+```
+
+* Try adding the LaTex command `\usepackage{endfloat}` after `header-includes:` in the `YAML`
+
 ## The body of your article {-}
 
 Now that you are setup with the YAML stucture you can start populating your manuscript with for figures, tables, equations, code and texts! In the minimal example that I created I created two separated `Rmd` files for the main manuscript and the additional files. This is because the manuscript could become really long and you might be better of splitting the two parts.  
 
 
-## Approaches to real-time collaboration {-}
+## Approaches to real-time collaboration with co-authors {-}
 
-In some cases, especially for books and papers revision, you might need real-time collaboration on the same document. For this purpose I suggest looking into [Overleaf](https://www.overleaf.com/project) which allows real-time collboration with LaTex. To create the LaTex version of your `Rmd` simply set `keep_tex: true` in the `YAML`.
+* Setup a `GitHub` account and push/pull changes with your collaborators
+* Checkout [Overleaf](https://www.overleaf.com/) for real-time collaboration on LaTex file. Have a read at this [blog post](https://medium.com/@arinbasu/a-tutorial-on-how-to-interface-an-r-notebook-with-overleaf-11f23c306cfd) that discuss working with Git, RStudio and Overleaf at the same time. The drawback is that, while it is easy to go from `Rmd` to `.tex` with the `YAML` option `keep_tex: true`, it is not the same on the other way around. However, it is worth checking it out since it offers plenty of journal LaTex templates! 
 
 
+# Aknowledgements {-}
+
+* [bookdown: Authoring Books and Technical Documents with R Markdown](https://bookdown.org/yihui/bookdown/)
+
+* *Interface R with Overleaf* https://medium.com/@arinbasu/a-tutorial-on-how-to-interface-an-r-notebook-with-overleaf-11f23c306cfd
+
+* Minimal `bookdown` template for scientific papers http://landscapeportal.org/blog/2017/09/06/r-markdown-template-for-a-scientific-manuscript/
+
+* [Earo Wang papers on GitHub](https://github.com/earowang/paper-calendar-vis) and helpful suggestions via email!

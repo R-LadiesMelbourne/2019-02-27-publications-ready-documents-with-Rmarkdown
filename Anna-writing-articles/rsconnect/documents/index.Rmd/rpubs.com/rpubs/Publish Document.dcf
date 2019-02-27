@@ -1,0 +1,10 @@
+name: Publish Document
+title:
+username:
+account: rpubs
+server: rpubs.com
+hostUrl: rpubs.com
+appId: https://api.rpubs.com/api/v1/document/471405/1fce5062f03747b09d5b916ecc8b0f5e
+bundleId: https://api.rpubs.com/api/v1/document/471405/1fce5062f03747b09d5b916ecc8b0f5e
+url: http://rpubs.com/annaquagli/471405
+when: 1551243203.7127
