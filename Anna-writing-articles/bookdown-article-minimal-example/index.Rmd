@@ -23,6 +23,7 @@ fontsize: 12pt
 header-includes: 
   \usepackage{float} \floatplacement{figure}{H} 
   \newcommand{\beginsupplement}{\setcounter{table}{0}  \renewcommand{\thetable}{S\arabic{table}} \setcounter{figure}{0} \renewcommand{\thefigure}{S\arabic{figure}}}
+  
   \usepackage{setspace}\doublespacing
   \usepackage{lineno}
   \linenumbers
@@ -31,7 +32,7 @@ header-includes:
 \newpage
 
 ```{r setup, include=FALSE,echo=FALSE}
-knitr::opts_chunk$set(echo = TRUE,fig.height = 5,fig.width = 5,fig.path = "img/",tidy = TRUE)
+knitr::opts_chunk$set(echo = TRUE,fig.height = 5,fig.width = 5,fig.path = "img/",tidy = TRUE, cache = TRUE)
 
 library(bookdown)
 library(knitr)
@@ -61,12 +62,11 @@ knitr::opts_chunk$set(echo = TRUE,fig.height = 5,fig.width = 5,fig.path = "img/"
 
 ## Generate figures within a chunk 
 
-
 ```{r bell-curve, fig.cap="Red trees in autumn",eval=TRUE,fig.width=3,fig.height=3}
 plot(density(rnorm(100)))
 ```
 
-It's a pretty cool bell curve in Figure \ref{fig:bell-curve}. 
+It's a pretty cool bell curve in Figure \ref{fig:bell-curve} \@ref(fig:bell-curve). 
 
 * Don't use `_` in labels! This is taken from `bookdown` book: *If you want to cross-reference figures or tables generated from a code chunk, please make sure the chunk label only contains alphanumeric characters (a-z, A-Z, 0-9), slashes (/), or dashes (-).*
 
