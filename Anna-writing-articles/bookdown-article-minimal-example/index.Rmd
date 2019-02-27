@@ -1,20 +1,24 @@
 ---
-title: "title"
+title: "My first paper"
 site: bookdown::bookdown_site
 
 author: |
-  | Author 1^[Corresponding author: email@email.com] $^1$, Author 2 $^1$, Author 3 $^2$
-  | $^1$Affiliation1,  $^2$Affiliation2
+  | Anna Quaglieri  ^[Corresponding author: anna.quaglieri16@gmail.com] $^{1,2}$, Soroor Zadeh $^{1,2}$
+  | $^1$Walter and Eliza Hall Institute,  $^2$University of Melbourne 
 
 abstract: |
-  Your abstract goes here...
+  Hopefully with this minimal example you will appreciate the robustness and flexibility of `bookdown` and you will start writing amazing reproducible documents!!
 
 bibliography: biblio.bib
+link-citations: yes
 
 output: 
   bookdown::pdf_document2:
-    toc: no
+    toc: yes
     keep_tex: true
+
+rmd_files: ["01-main.Rmd", "02-Additional_files.Rmd", "03-References.Rmd"]
+
 fontsize: 12pt
 header-includes: 
   \usepackage{float} \floatplacement{figure}{H} 
@@ -24,89 +28,112 @@ header-includes:
   \linenumbers
 ---
 
-
 \newpage
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE,fig.height = 5,fig.width = 5,fig.path = "img/")
+```{r setup, include=FALSE,echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE,fig.height = 5,fig.width = 5,fig.path = "img/",tidy = TRUE)
 
 library(bookdown)
 library(knitr)
 library(tidyverse)
+library(png)
+library(grid)
+library(kableExtra)
 ```
 
 
 # Introduction
 \label{sec:intro}
 
-This is my intro. All of this uses the amazing [@bookdown] package.
+This is my introduction to the flexible `bookdown` [@bookdown] package.
 
-Bookdown extends the syntax provided by R Markdown, allowing automatic numbering of figures / tables / equations, and cross-referencing them.
-
-https://stackoverflow.com/questions/25824795/how-to-combine-two-rmarkdown-rmd-files-into-a-single-output
-
-http://landscapeportal.org/blog/2017/09/06/r-markdown-template-for-a-scientific-manuscript/
-
+`bookdown` extends the syntax provided by R Markdown, allowing automatic numbering of figures / tables / equations, and cross-references within a single documents.
 
 # Results
 \label{sec:res}
 
-Amazing results after introducing the story in Section \ref{sec:intro}.
-
 All the Figures created by the chunks in this article will be saved into the `img/` which is created in the setup chunk at the beginning of this document. 
 
-## About the Normal Distribution
-\label{sec:res-trees}
+```r
+knitr::opts_chunk$set(echo = TRUE,fig.height = 5,fig.width = 5,fig.path = "img/",tidy = TRUE)
+```
 
-* Problem of “floating environments” in LaTeX
+## Some `LaTex` options!
 
-```{r bell-curve, fig.cap="Red trees in autumn",eval=TRUE}
+* Try removing the following from the `YAML`!
+
+```yaml
+---
+\usepackage{setspace}\doublespacing
+\usepackage{lineno}
+\linenumbers
+---
+```
+
+* Try adding the LaTex command `\usepackage{endfloat}` after `header-includes:` in the `YAML`
+
+## Generate figures within a chunk 
+
+
+```{r bell-curve, fig.cap="Red trees in autumn",eval=TRUE,fig.width=3,fig.height=3}
 plot(density(rnorm(100)))
 ```
 
-It's a pretty cool bell curve in Figure \ref{fig:bell-curve}. Whatch out for `_` in cross-referencing labels!
+It's a pretty cool bell curve in Figure \ref{fig:bell-curve}. 
 
+* Don't use `_` in labels! This is taken from `bookdown` book: *If you want to cross-reference figures or tables generated from a code chunk, please make sure the chunk label only contains alphanumeric characters (a-z, A-Z, 0-9), slashes (/), or dashes (-).*
 
-If you want to cross-reference figures or tables generated from a code chunk, please make sure the chunk label only contains alphanumeric characters (a-z, A-Z, 0-9), slashes (/), or dashes (-).
+## Insert `png` figures
 
-It is always good to have some Greek letters in your paper! Like Equation \@ref(eq:binom) below:
-
-\begin{equation} 
-  f\left(k\right) = \binom{n}{k} p^k\left(1-p\right)^{n-k}
-  (\#eq:binom)
-\end{equation} 
-
-
-## About the scatter plot
-
-```{r scatter, fig.cap="Loud Kookabara",eval=TRUE}
-plot(1:10,1:10)
+```{r loud-kooka, fig.cap="Loud Kookabara",eval=TRUE,fig.height=4,fig.width=4}
+img <- png::readPNG("img/kooka.png")
+grid.raster(img)
 ```
 
 
-```{r tree-diamonds,eval=TRUE}
-kable(head(diamonds),
+## Insert `pdf` figures with `knitr::include_graphics`
+
+```{r bookdown-docs, fig.cap="All types of documents with `bookdown`",eval=TRUE,fig.height=4,fig.width=6}
+knitr::include_graphics("img/reproducible-documents.pdf")
+```
+
+
+## Insert tables with `knitr::kable`
+
+```{r tree-diamonds,eval=TRUE,results='hold'}
+tab <- knitr::kable(head(diamonds),
       caption = 'A table of the first 10 rows and three columns of the diamonds data.',
       booktabs = TRUE)
+
+kableExtra::kable_styling(tab, latex_options = 'hold_position')
 ```
 
-We created the simple Table \ref{tab:tree-diamonds}. See more on tables and long tables https://bookdown.org/yihui/bookdown/tables.html. 
-
-You can also see a scatter plot in Figure \@ref(fig:sup1).
+We created the simple Table \@ref(tab:tree-diamonds). See more on tables and long tables https://bookdown.org/yihui/bookdown/tables.html. 
 
 
-## Extra tips: Setup your bibliography
+## Extra tips: Setup your bibliography with `utils::citation`
 
-```{r extra,eval=FALSE}
-print(citation("rticles"),bibtex=TRUE)
+```{r extra,eval=TRUE,echo=TRUE}
+print(utils::citation("rticles"),bibtex=TRUE)
 ```
 
+## Reference/Re-number files in supplementary material
+
+Have a look at the beautiful autumn trees in Figure \@ref(fig:red-trees).
+
+## Collaboration with co-authors
+
+* Setup a `GitHub` account and push/pull changes with your collaborators
+* Checkout [Overleaf](https://www.overleaf.com/) for real-time collaboration on LaTex file. Have a read at this [blog post](https://medium.com/@arinbasu/a-tutorial-on-how-to-interface-an-r-notebook-with-overleaf-11f23c306cfd) that discuss working with Git, RStudio and Overleaf at the same time. The drawback is that, while it is easy to go from `Rmd` to `.tex` with the `YAML` option `keep_tex: true`, it is not the same on the other way around. However, it is worth checking it out since it offers plenty of journal LaTex templates! 
 
 # Conclusions
 
-Bla Bla....
-
+Hopefully now you have a pretty good overview of the options offered by `bookdown`! Also, the best way to learn is to go through other people's GitHub accounts and have a look at how they do things as well as ask questions!
 
 \newpage
+
+
+
+
 
 

@@ -2,10 +2,13 @@
 
 \beginsupplement
 
+## A beautiful autumn tree {-}
 
-```{r sup1,eval=TRUE,fig.cap="Caption for the first Sup figure in my paper"}
-plot(1:10)
+```{r red-trees,eval=TRUE,fig.cap="Autumn trees at the University of Melbourne"}
+img <- png::readPNG("img/trees.png")
+grid::grid.raster(img)
 ```
 
 
+\newpage
 

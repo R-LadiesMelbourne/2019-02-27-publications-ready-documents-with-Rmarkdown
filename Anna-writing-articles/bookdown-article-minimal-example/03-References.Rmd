@@ -2,4 +2,9 @@
 
 ## Interesting blogposts
 
-*Interface R with Overleaf* https://medium.com/@arinbasu/a-tutorial-on-how-to-interface-an-r-notebook-with-overleaf-11f23c306cfd
+* *Interface R with Overleaf* https://medium.com/@arinbasu/a-tutorial-on-how-to-interface-an-r-notebook-with-overleaf-11f23c306cfd
+
+* Minimal `bookdown` template for scientific papers http://landscapeportal.org/blog/2017/09/06/r-markdown-template-for-a-scientific-manuscript/
+
+* [Earo Wang papers on GitHub](https://github.com/earowang/paper-calendar-vis) and helpful suggestions via email!
+
