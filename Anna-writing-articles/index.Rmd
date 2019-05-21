@@ -101,7 +101,7 @@ In the `bookdown-article-minimal-example/` folder I created a minimal example to
 
 ## `YAML` setup {-}
 
-The `YAML` is what you need to define the layout or theme of your documents. You can also add plain LaTex code in here and tell `bookdown` how you want your `Rmd` files to be knitted together. By default, `bookdown` bind together files in numerical order. For example, see the `Rmd` files in the [`bookdown-article-minimal-example/` folder](https://github.com/R-LadiesMelbourne/2019-02-27-publications-ready-documents-with-Rmarkdown/tree/master/Anna-writing-articles/bookdown-article-minimal-example). The firt part would be `index.Rmd`, followed by `02-Additional_files` and `03-References.Rmd`.
+The `YAML` is what you need to define the layout or theme of your documents. You can also add plain LaTex code in here and tell `bookdown` how you want your `Rmd` files to be knitted together. By default, `bookdown` bind together files in numerical order. For example, see the `Rmd` files in the [`bookdown-article-minimal-example/ folder`](https://github.com/R-LadiesMelbourne/2019-02-27-publications-ready-documents-with-Rmarkdown/tree/master/Anna-writing-articles/bookdown-article-minimal-example). The firt part would be `index.Rmd`, followed by `02-Additional_files` and `03-References.Rmd`.
 
 ### Allow the `bookdown` cross-referencing approach {-}
 
@@ -198,7 +198,7 @@ header-includes:
 ---
 ```
 
-### Some extra `LaTex` options: line numbering and spacing!
+### Some extra `LaTex` options: line numbering and spacing! {-}
 
 * Try removing the following from the `YAML`!
 
